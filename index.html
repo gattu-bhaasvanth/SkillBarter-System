@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBarter - Exchange Skills, Learn Together</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fas fa-exchange-alt"></i>
+            <h2>SkillBarter</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" id="homeBtn" class="nav-btn active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" id="profileBtn" class="nav-btn"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#" id="matchesBtn" class="nav-btn"><i class="fas fa-heart"></i> Matches</a></li>
+            <li><a href="#" id="messagesBtn" class="nav-btn"><i class="fas fa-comments"></i> Messages <span id="unreadBadge" class="badge">0</span></a></li>
+            <li><a href="#" id="logoutBtn" class="nav-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search skills or users...">
+            </div>
+            <div class="user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <span id="currentUserName">Welcome!</span>
+            </div>
+        </header>
+
+        <section id="homeSection" class="section active">
+            <div class="dashboard-grid">
+                <!-- Left Sidebar: Profile Summary -->
+                <aside class="profile-summary">
+                    <div class="glass-card">
+                        <div class="profile-avatar-large">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 id="profileName">Your Name</h3>
+                        <p class="profile-email" id="profileEmail">email@example.com</p>
+                        
+                        <div class="quick-stats">
+                            <div class="quick-stat">
+                                <span class="stat-value" id="mySkillsCount">0</span>
+                                <span class="stat-label">Skills Offered</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="stat-value" id="myWantsCount">0</span>
+                                <span class="stat-label">Skills Wanted</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card stats-overview">
+                        <h4><i class="fas fa-chart-line"></i> Platform Stats</h4>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <span class="stat-number" id="totalUsers">0</span>
+                                <span class="stat-text">Active Users</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <span class="stat-number" id="totalSkills">0</span>
+                                <span class="stat-text">Skills Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Middle Column: Community Feed -->
+                <div class="community-feed">
+                    <div class="feed-header">
+                        <h2><i class="fas fa-users"></i> Community Members</h2>
+                        <div class="filter-chips">
+                            <button class="chip active">All</button>
+                            <button class="chip">New</button>
+                            <button class="chip">Active</button>
+                        </div>
+                    </div>
+                    <div id="usersList" class="users-feed">
+                        <!-- Loading skeleton -->
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar: Top Matches -->
+                <aside class="top-matches-sidebar">
+                    <div class="glass-card">
+                        <h4><i class="fas fa-heart"></i> Top Matches</h4>
+                        <div id="topMatchesList" class="top-matches-list">
+                            <div class="skeleton-match"></div>
+                            <div class="skeleton-match"></div>
+                            <div class="skeleton-match"></div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="profileSection" class="section">
+            <div class="profile-header">
+                <h2><i class="fas fa-user-edit"></i> Your Profile</h2>
+            </div>
+            <div class="glass-card profile-card">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-chalkboard-teacher"></i> Skills I Can Teach</label>
+                        <div id="skillsOfferedContainer" class="skills-container"></div>
+                        <button type="button" class="add-skill-btn" onclick="app.addSkillField('offered')">
+                            <i class="fas fa-plus"></i> Add Skill
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-graduation-cap"></i> Skills I Want to Learn</label>
+                        <div id="skillsWantedContainer" class="skills-container"></div>
+                        <button type="button" class="add-skill-btn" onclick="app.addSkillField('wanted')">
+                            <i class="fas fa-plus"></i> Add Skill
+                        </button>
+                    </div>
+                    <button type="submit" class="save-btn"><i class="fas fa-save"></i> Save Profile</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="matchesSection" class="section">
+            <div class="matches-header">
+                <h2><i class="fas fa-heart"></i> Your Skill Matches</h2>
+            </div>
+            <div id="matchesList" class="matches-grid"></div>
+        </section>
+
+        <section id="messagesSection" class="section">
+            <div class="messages-container">
+                <div class="conversations-list glass-card">
+                    <h3><i class="fas fa-comments"></i> Conversations</h3>
+                    <div id="conversationsList"></div>
+                </div>
+                <div class="chat-area glass-card">
+                    <div class="chat-header" id="chatHeader">
+                        <span>Select a conversation</span>
+                    </div>
+                    <div class="messages-display" id="messagesDisplay"></div>
+                    <div class="message-input-area" id="messageInputArea" style="display:none;">
+                        <input type="text" id="messageInput" placeholder="Type a message...">
+                        <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
