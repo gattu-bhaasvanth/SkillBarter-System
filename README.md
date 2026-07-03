@@ -237,8 +237,33 @@ AD Project/
 
 ---
 
-## 🎓 Learning Outcomes
 
+## 📸 Project Preview
+
+### 🔐 Login Page
+![SkillBarter Login Page](login-page.jpg)
+
+### 🏠 Community Dashboard
+![SkillBarter Community Dashboard](community-dashboard.png)
+
+### 👤 Profile & Skill Management
+![SkillBarter Profile and Skills](profile-skills.png)
+
+### 💯 Perfect Skill Match
+![SkillBarter 100 Percent Match](skill-match-100.png)
+
+### 📊 Partial Skill Match
+![SkillBarter 53 Percent Match](skill-match-53.png)
+
+### 📧 Email Connection Feature
+![SkillBarter Email Connection](match-email-notification.png)
+
+### 💬 Real-Time Messaging
+![SkillBarter Messaging](messages.png)
+
+---
+
+## 🎓 Learning Outcomes
 This project demonstrates:
 - Firebase integration (Auth + Firestore)
 - Modern CSS techniques (glassmorphism, animations)
